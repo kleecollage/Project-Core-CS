@@ -7,9 +7,12 @@
     <NuGetPackageRoot Condition=" '$(NuGetPackageRoot)' == '' ">/home/mrrobot/.nuget/packages/</NuGetPackageRoot>
     <NuGetPackageFolders Condition=" '$(NuGetPackageFolders)' == '' ">/home/mrrobot/.nuget/packages/</NuGetPackageFolders>
     <NuGetProjectStyle Condition=" '$(NuGetProjectStyle)' == '' ">PackageReference</NuGetProjectStyle>
-    <NuGetToolVersion Condition=" '$(NuGetToolVersion)' == '' ">6.10.0</NuGetToolVersion>
+    <NuGetToolVersion Condition=" '$(NuGetToolVersion)' == '' ">6.3.3</NuGetToolVersion>
   </PropertyGroup>
   <ItemGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
     <SourceRoot Include="/home/mrrobot/.nuget/packages/" />
   </ItemGroup>
+  <PropertyGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
+    <PkgMicrosoft_EntityFrameworkCore_Tools Condition=" '$(PkgMicrosoft_EntityFrameworkCore_Tools)' == '' ">/home/mrrobot/.nuget/packages/microsoft.entityframeworkcore.tools/6.0.0</PkgMicrosoft_EntityFrameworkCore_Tools>
+  </PropertyGroup>
 </Project>
