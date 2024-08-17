@@ -9,9 +9,7 @@ namespace Persistencia
 {
     public class CursosOnlineContext: DbContext
     {
-        public CursosOnlineContext(DbContextOptions options): base(options) {
-
-        }
+        public CursosOnlineContext(DbContextOptions options): base(options) { }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<CursoInstructor>().HasKey(ci => new { ci.InstructorId, ci.CursoId });

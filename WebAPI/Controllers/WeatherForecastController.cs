@@ -1,4 +1,6 @@
+using Dominio;
 using Microsoft.AspNetCore.Mvc;
+using Persistencia;
 
 namespace WebAPI.Controllers;
 
@@ -7,9 +9,13 @@ namespace WebAPI.Controllers;
 // http://localhost:5000/WeatherForecasts
 public class WeatherForecastController : ControllerBase
 {
+    // inyeccion de dependencias
+    private readonly CursosOnlineContext context;
+    public WeatherForecastController(CursosOnlineContext _context) {
+        this.context = _context;
+    }
     [HttpGet]
-    public IEnumerable<string> Get() {
-        string[] nombres = new[] { "Fabiana", "Rolando", "Maria", "Juana" };
-        return nombres;
+    public IEnumerable<Curso> Get() {
+        return context.Curso.ToList();
     }
 }
