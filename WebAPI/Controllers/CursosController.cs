@@ -9,7 +9,6 @@ using Aplicacion.Cursos;
 
 namespace WebAPI.Controllers
 {
-    // http://localhost:5000/api/Cursos
     [Route("api/[controller]")]
     [ApiController]
     public class CursosController: ControllerBase
@@ -19,6 +18,7 @@ namespace WebAPI.Controllers
             _mediator = mediator;
         }
 
+        // http://localhost:5000/api/Cursos
         [HttpGet]
         public async Task<ActionResult<List<Curso>>> Get() {
             return await _mediator.Send(new Consulta.ListaCursos());
@@ -29,5 +29,15 @@ namespace WebAPI.Controllers
         public async Task<ActionResult<Curso>> Detalle(int id) {
             return await _mediator.Send(new ConsultaId.CursoUnico { Id = id });
         }
+
+        [HttpPost]
+        public async Task<ActionResult<Unit>> Crear(Nuevo.Ejecuta data) {
+            return await _mediator.Send(data);
+        }
+
+
+
+
+
     }
 }
