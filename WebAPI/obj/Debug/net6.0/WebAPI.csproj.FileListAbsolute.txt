@@ -76,3 +76,4 @@
 /home/mrrobot/Documentos/DotNetProjects/ProyectoCore/WebAPI/obj/Debug/net6.0/WebAPI.pdb
 /home/mrrobot/Documentos/DotNetProjects/ProyectoCore/WebAPI/obj/Debug/net6.0/WebAPI.genruntimeconfig.cache
 /home/mrrobot/Documentos/DotNetProjects/ProyectoCore/WebAPI/obj/Debug/net6.0/ref/WebAPI.dll
+/home/mrrobot/Documentos/DotNetProjects/ProyectoCore/WebAPI/bin/Debug/net6.0/Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
