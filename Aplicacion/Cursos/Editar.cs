@@ -1,7 +1,9 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Threading.Tasks;
+using Aplicacion.ManejadorError;
 using FluentValidation;
 using MediatR;
 using Persistencia;
@@ -35,7 +37,8 @@ namespace Aplicacion.Cursos
             {
                 var curso = await _context.Curso.FindAsync(request.CursoId);
                 if(curso == null) {
-                    throw new Exception("El curso no existe");
+                    // throw new Exception("El curso no existe");
+                    throw new ManejadorExcepcion(HttpStatusCode.NotFound, new { mensaje = "No se encuentra el curso" });
                 }
                 curso.Titulo = request.Titulo ?? curso.Titulo;
                 curso.Descripcion = request.Descripcion ?? curso.Descripcion;
