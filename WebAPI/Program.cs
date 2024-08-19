@@ -1,4 +1,5 @@
 using Aplicacion.Cursos;
+using FluentValidation.AspNetCore;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Persistencia;
@@ -14,8 +15,10 @@ builder.Services.AddSwaggerGen();
 // Registro de CursosOnlineContext
 builder.Services.AddDbContext<CursosOnlineContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
-
+// Mediator
 builder.Services.AddMediatR(typeof(Consulta.Manejador).Assembly);
+// Fluent Validation
+builder.Services.AddControllers().AddFluentValidation(cfg => cfg.RegisterValidatorsFromAssemblyContaining<Nuevo>());
 
 var app = builder.Build();
 

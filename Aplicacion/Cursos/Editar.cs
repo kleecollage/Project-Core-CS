@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using FluentValidation;
 using MediatR;
 using Persistencia;
 
@@ -11,11 +12,19 @@ namespace Aplicacion.Cursos
     {
         public class Ejecuta: IRequest {
             public int CursoId { get; set; }
-            public string? Titulo { get; set; }
-            public string? Descripcion { get; set; }
+            public string Titulo { get; set; }
+            public string Descripcion { get; set; }
             public DateTime? FechaPublicacion { get; set; }
         }
 
+        public class EjecutaValidcacion: AbstractValidator<Ejecuta> {
+            public EjecutaValidcacion() {
+                RuleFor(x => x.Titulo).NotEmpty();
+                RuleFor(x => x.Descripcion).NotEmpty();
+                RuleFor(x => x.FechaPublicacion).NotEmpty();
+            }
+        }
+        
         public class Manejador : IRequestHandler<Ejecuta>
         {
             private readonly CursosOnlineContext _context;
