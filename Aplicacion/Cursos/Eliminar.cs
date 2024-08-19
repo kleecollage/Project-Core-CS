@@ -1,7 +1,9 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Threading.Tasks;
+using Aplicacion.ManejadorError;
 using MediatR;
 using Persistencia;
 
@@ -22,7 +24,11 @@ namespace Aplicacion.Cursos
             public async Task<Unit> Handle(Ejecuta request, CancellationToken cancellationToken)
             {
                 var curso = await _context.Curso.FindAsync(request.Id);
-                if (curso == null) throw new Exception("No se puede eliminar curso");
+                if (curso == null)
+                {
+                    // throw new Exception("No se puede eliminar curso"); // Excepcion regular de C#
+                    throw new ManejadorExcepcion(HttpStatusCode.NotFound, new { mensaje = "No se encontro el curso" });
+                }
                
                 _context.Remove(curso);
                
