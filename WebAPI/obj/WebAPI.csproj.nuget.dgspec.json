@@ -223,6 +223,66 @@
         }
       }
     },
+    "/home/mrrobot/Documentos/DotNetProjects/ProyectoCore/Seguridad/Seguridad.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/home/mrrobot/Documentos/DotNetProjects/ProyectoCore/Seguridad/Seguridad.csproj",
+        "projectName": "Seguridad",
+        "projectPath": "/home/mrrobot/Documentos/DotNetProjects/ProyectoCore/Seguridad/Seguridad.csproj",
+        "packagesPath": "/home/mrrobot/.nuget/packages/",
+        "outputPath": "/home/mrrobot/Documentos/DotNetProjects/ProyectoCore/Seguridad/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/home/mrrobot/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {
+              "/home/mrrobot/Documentos/DotNetProjects/ProyectoCore/Aplicacion/Aplicacion.csproj": {
+                "projectPath": "/home/mrrobot/Documentos/DotNetProjects/ProyectoCore/Aplicacion/Aplicacion.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/home/mrrobot/.dotnet/sdk/6.0.418/RuntimeIdentifierGraph.json"
+        }
+      }
+    },
     "/home/mrrobot/Documentos/DotNetProjects/ProyectoCore/WebAPI/WebAPI.csproj": {
       "version": "1.0.0",
       "restore": {
@@ -247,6 +307,9 @@
             "projectReferences": {
               "/home/mrrobot/Documentos/DotNetProjects/ProyectoCore/Aplicacion/Aplicacion.csproj": {
                 "projectPath": "/home/mrrobot/Documentos/DotNetProjects/ProyectoCore/Aplicacion/Aplicacion.csproj"
+              },
+              "/home/mrrobot/Documentos/DotNetProjects/ProyectoCore/Seguridad/Seguridad.csproj": {
+                "projectPath": "/home/mrrobot/Documentos/DotNetProjects/ProyectoCore/Seguridad/Seguridad.csproj"
               }
             }
           }

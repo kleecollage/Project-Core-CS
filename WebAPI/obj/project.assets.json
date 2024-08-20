@@ -2199,6 +2199,22 @@
         "frameworkReferences": [
           "Microsoft.AspNetCore.App"
         ]
+      },
+      "Seguridad/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "dependencies": {
+          "Aplicacion": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/Seguridad.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Seguridad.dll": {}
+        },
+        "frameworkReferences": [
+          "Microsoft.AspNetCore.App"
+        ]
       }
     }
   },
@@ -6850,6 +6866,11 @@
       "type": "project",
       "path": "../Persistencia/Persistencia.csproj",
       "msbuildProject": "../Persistencia/Persistencia.csproj"
+    },
+    "Seguridad/1.0.0": {
+      "type": "project",
+      "path": "../Seguridad/Seguridad.csproj",
+      "msbuildProject": "../Seguridad/Seguridad.csproj"
     }
   },
   "projectFileDependencyGroups": {
@@ -6857,6 +6878,7 @@
       "Aplicacion >= 1.0.0",
       "Microsoft.AspNetCore.Authentication.JwtBearer >= 3.1.1",
       "Newtonsoft.Json >= 12.0.3",
+      "Seguridad >= 1.0.0",
       "Swashbuckle.AspNetCore >= 6.5.0"
     ]
   },
@@ -6887,6 +6909,9 @@
           "projectReferences": {
             "/home/mrrobot/Documentos/DotNetProjects/ProyectoCore/Aplicacion/Aplicacion.csproj": {
               "projectPath": "/home/mrrobot/Documentos/DotNetProjects/ProyectoCore/Aplicacion/Aplicacion.csproj"
+            },
+            "/home/mrrobot/Documentos/DotNetProjects/ProyectoCore/Seguridad/Seguridad.csproj": {
+              "projectPath": "/home/mrrobot/Documentos/DotNetProjects/ProyectoCore/Seguridad/Seguridad.csproj"
             }
           }
         }

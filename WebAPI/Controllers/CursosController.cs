@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Dominio;
 using MediatR;
 using Aplicacion.Cursos;
+using Microsoft.AspNetCore.Authorization;
 
 namespace WebAPI.Controllers
 {
@@ -19,7 +20,6 @@ namespace WebAPI.Controllers
         // public CursosController(IMediator mediator){
         //     _mediator = mediator;
         // }
-
 
         // http://localhost:5000/api/Cursos
         [HttpGet]
