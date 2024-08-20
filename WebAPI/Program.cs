@@ -1,6 +1,7 @@
 using System.Text;
 using Aplicacion.Contratos;
 using Aplicacion.Cursos;
+using AutoMapper;
 using Dominio;
 using FluentValidation.AspNetCore;
 using MediatR;
@@ -50,6 +51,9 @@ builder.Services.AddScoped<IJwtGenerador, JwtGenerador>();
 
 // Sesion del  usuario
 builder.Services.AddScoped<IUsuarioSesion, UsuarioSesion>();
+
+// Mapper
+builder.Services.AddAutoMapper(typeof(Consulta.Manejador));
 
 // Controllers Security
 var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("Mi palabra secreta"));
