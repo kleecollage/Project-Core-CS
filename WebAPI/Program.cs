@@ -13,6 +13,8 @@ using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Persistencia;
+using Persistencia.DapperConexion;
+using Persistencia.DapperConexion.Instructor;
 using Seguridad.TokenSeguridad;
 using WebAPI.Middleware;
 
@@ -26,6 +28,12 @@ builder.Services.AddEndpointsApiExplorer();
 // Registro de CursosOnlineContext
 builder.Services.AddDbContext<CursosOnlineContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+// Dapper
+builder.Services.AddOptions();
+builder.Services.Configure<ConexionConfiguracion>(builder.Configuration.GetSection("ConnectionStrings"));
+builder.Services.AddTransient<IFactoryConnection, FactoryConnection>();
+builder.Services.AddScoped<IInstructor, InstructorRepositorio>();
 
 // Mediator
 builder.Services.AddMediatR(typeof(Consulta.Manejador).Assembly);
@@ -54,6 +62,7 @@ builder.Services.AddScoped<IUsuarioSesion, UsuarioSesion>();
 
 // Mapper
 builder.Services.AddAutoMapper(typeof(Consulta.Manejador));
+
 
 // Controllers Security
 var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("Mi palabra secreta"));
