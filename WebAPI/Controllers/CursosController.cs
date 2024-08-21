@@ -7,6 +7,7 @@ using Dominio;
 using MediatR;
 using Aplicacion.Cursos;
 using Microsoft.AspNetCore.Authorization;
+using Persistencia.DapperConexion.Paginacion;
 
 namespace WebAPI.Controllers
 {
@@ -52,6 +53,11 @@ namespace WebAPI.Controllers
             return await Mediator.Send(new Eliminar.Ejecuta{ Id = id });
         }
 
+        // http://localhost:5000/api/Cursos/report
+        [HttpPost("report")]
+        public async Task<ActionResult<PaginacionModel>> Report(PaginacionCurso.Ejecuta data) {
+            return await Mediator.Send(data);
+        }
 
 
 

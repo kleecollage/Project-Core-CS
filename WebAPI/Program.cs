@@ -16,6 +16,7 @@ using Microsoft.OpenApi.Models;
 using Persistencia;
 using Persistencia.DapperConexion;
 using Persistencia.DapperConexion.Instructor;
+using Persistencia.DapperConexion.Paginacion;
 using Seguridad.TokenSeguridad;
 using WebAPI.Middleware;
 
@@ -35,6 +36,7 @@ builder.Services.AddOptions();
 builder.Services.Configure<ConexionConfiguracion>(builder.Configuration.GetSection("ConnectionStrings"));
 builder.Services.AddTransient<IFactoryConnection, FactoryConnection>();
 builder.Services.AddScoped<IInstructor, InstructorRepositorio>();
+builder.Services.AddScoped<IPaginacion, PaginacionRepositorio>();
 
 // Mediator
 builder.Services.AddMediatR(typeof(Consulta.Manejador).Assembly);
