@@ -12,6 +12,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.OpenApi.Models;
 using Persistencia;
 using Persistencia.DapperConexion;
 using Persistencia.DapperConexion.Instructor;
@@ -64,6 +65,17 @@ builder.Services.AddScoped<IUsuarioSesion, UsuarioSesion>();
 builder.Services.AddAutoMapper(typeof(Consulta.Manejador));
 
 
+// Swagger
+builder.Services.AddSwaggerGen(c =>
+{
+    c.SwaggerDoc("v1", new OpenApiInfo
+    {
+        Title = "Servicios para mantenimiento de cursos",
+        Version = "v1"
+    });
+    c.CustomSchemaIds(c => c.FullName);
+});
+
 // Controllers Security
 var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("Mi palabra secreta"));
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(opt => {
@@ -97,11 +109,13 @@ using (var scope = app.Services.CreateScope())
 }
 
 // Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-    // app.UseSwagger();
-    // app.UseSwaggerUI();
-}
+// if (app.Environment.IsDevelopment()){ }
+
+// Swagger
+app.UseSwagger();
+app.UseSwaggerUI(c => {
+    c.SwaggerEndpoint("/swagger/v1/swagger.json", "Cursos Online v1");
+}) ;
 
 app.UseAuthentication();
 
