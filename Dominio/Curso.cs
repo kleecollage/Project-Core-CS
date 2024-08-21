@@ -12,6 +12,7 @@ namespace Dominio
         public string? Descripcion { get; set; }
         public DateTime? FechaPublicacion { get; set; }
         public byte[]? FotoPortada { get; set; }
+        public DateTime? FechaCreacion { get; set; }
         public Precio PrecioPromocion { get; set; } // Relacion 1:1 entre Curso y Precio
         public ICollection<Comentario> ComentarioLista { get; set; } // Relacion 1:N entre Curso y Comentario
         public ICollection<CursoInstructor> InstructoresLink { get; set; } // Relacion N:N entre Curso e Instructor

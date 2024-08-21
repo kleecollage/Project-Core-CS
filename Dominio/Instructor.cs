@@ -12,6 +12,8 @@ namespace Dominio
         public string? Apellidos { get; set; }
         public string? Grado { get; set; }
         public byte[]? FotoPerfil { get; set; }
+        public DateTime? FechaCreacion { get; set; }
+
         public ICollection<CursoInstructor> CursoLink { get; set; } // Relacion N:N entre Curso e Instructor
     }
 }
