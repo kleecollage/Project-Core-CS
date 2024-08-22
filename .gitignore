@@ -28,12 +28,12 @@ cursos-online-app/.env.test.local
 cursos-online-app/.env.production.local
 
 # Editor directories and files
-.vscode/
-.idea/
-*.suo
-*.ntvs*
-cursos-online-app/*.njsproj
-*.sln
+cursos-online-app/.vscode/
+cursos-online-app/.idea/
+cursos-online-app/*.suo
+cursos-online-app/*.ntvs*
+cursos-online-app/cursos-online-app/*.njsproj
+cursos-online-app/*.sln
 
 # MacOS files
 cursos-online-app/Thumbs.db
