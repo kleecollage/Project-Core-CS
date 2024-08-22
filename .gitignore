@@ -1,1 +1,40 @@
+# SQL Connection
 WebAPI/appsettings.json
+
+# Node modules
+cursos-online-app/node_modules/
+
+# Build directory
+cursos-online-app/build/cursos-online-app/
+
+# Logs
+cursos-online-app/cursos-online-app/npm-debug.log*
+cursos-online-app/yarn-debug.log*
+cursos-online-app/yarn-error.log*cursos-online-app/
+
+# Dependency directories
+cursos-online-app//.pnp
+cursos-online-app/.pnp.jscursos-online-app/
+
+# Testing
+cursos-online-app/coverage/
+
+# Miscellaneous
+cursos-online-app/.DS_Store
+.env
+cursos-online-app/.env.local
+cursos-online-app/.env.development.local
+cursos-online-app/.env.test.local
+cursos-online-app/.env.production.local
+
+# Editor directories and files
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+cursos-online-app/*.njsproj
+*.sln
+
+# MacOS files
+cursos-online-app/Thumbs.db
+
