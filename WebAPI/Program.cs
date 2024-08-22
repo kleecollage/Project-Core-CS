@@ -27,6 +27,11 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 // builder.Services.AddSwaggerGen();
 
+// CORS
+builder.Services.AddCors(o => o.AddPolicy("corsApp", builder => { 
+    builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader(); 
+}));
+
 // Registro de CursosOnlineContext
 builder.Services.AddDbContext<CursosOnlineContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
@@ -70,7 +75,6 @@ builder.Services.AddScoped<IUsuarioSesion, UsuarioSesion>();
 
 // Mapper
 builder.Services.AddAutoMapper(typeof(Consulta.Manejador));
-
 
 // Swagger
 builder.Services.AddSwaggerGen(c =>
@@ -134,5 +138,7 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
+
+app.UseCors("corsApp");
 
 app.Run();
