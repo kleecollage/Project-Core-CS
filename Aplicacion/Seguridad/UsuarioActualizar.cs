@@ -51,24 +51,25 @@ namespace Aplicacion.Seguridad
             }
             public async Task<UsuarioData> Handle(Ejecuta request, CancellationToken cancellationToken)
             {
-                var usuarioIden = await _userManager.FindByNameAsync(request.Username);
+                var usuarioIden = await _userManager.FindByEmailAsync(request.Email);
+                
                 if (usuarioIden == null)
                 {
-                    throw new ManejadorExcepcion(HttpStatusCode.NotFound, new { mensaje = "El usuario no existe" });
+                    throw new ManejadorExcepcion(HttpStatusCode.NotFound, new { mensaje = "El correo no existe" });
                 }
 
                 var resultado = await _context.Users
-                    .Where(x => x.Email == request.Email && x.UserName != request.Username)
+                    .Where(x => x.Email != request.Email && x.UserName == request.Username)
                     .AnyAsync();
                 
                 if (resultado)
                 {
-                    throw new ManejadorExcepcion(HttpStatusCode.InternalServerError, new { mensaje = "Este email ya pertenece a otro usuario" });
+                    throw new ManejadorExcepcion(HttpStatusCode.InternalServerError, new { mensaje = "Este username ya existe" });
                 }
 
                 usuarioIden.NombreCompleto = request.NombreCompleto;
                 usuarioIden.PasswordHash = _passwordGHasher.HashPassword(usuarioIden, request.Password);
-                usuarioIden.Email = request.Email;
+                usuarioIden.UserName = request.Username;
 
                 var resultadoUpdate = await _userManager.UpdateAsync(usuarioIden);
                 var resultadoRoles = await _userManager.GetRolesAsync(usuarioIden);
