@@ -37,7 +37,7 @@ namespace Aplicacion.Seguridad
                 var usuario = await _userManager.FindByNameAsync(_usuarioSesion.ObtenerUsuarioSesion());
                 var resultadoRoles = await _userManager.GetRolesAsync(usuario);
                 var listaRoles = new List<string>(resultadoRoles);
-                var imagenPerfil = await _context.Documento.Where(x => x.ObjetoReferencia == new Guid(usuario.Id)).FirstAsync();
+                var imagenPerfil = await _context.Documento.Where(x => x.ObjetoReferencia == new Guid(usuario.Id)).FirstOrDefaultAsync();
                 
                 if (imagenPerfil != null)
                 {

@@ -71,7 +71,7 @@ namespace Aplicacion.Seguridad
                 // validacion de imagen perfil
                 if (request.ImagenPerfil != null)
                 {
-                    var resultadoImagen = await _context.Documento.Where(x => x.ObjetoReferencia == new Guid(usuarioIden.Id)).FirstAsync();
+                    var resultadoImagen = await _context.Documento.Where(x => x.ObjetoReferencia == new Guid(usuarioIden.Id)).FirstOrDefaultAsync();
                     if (resultadoImagen == null)
                     {
                         var imagen = new Documento
