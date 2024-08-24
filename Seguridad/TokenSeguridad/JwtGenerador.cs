@@ -23,7 +23,7 @@ namespace Seguridad.TokenSeguridad
             if (roles != null)
             {
                 foreach (var rol in roles)
-                {
+                {   // payload de JWT
                     claims.Add(new Claim(ClaimTypes.Role, rol));
                 }
             }
