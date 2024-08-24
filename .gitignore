@@ -1,4 +1,4 @@
-# SQL Connection
+# Archivos de configuración y bases de datos
 WebAPI/appsettings.json
 
 # Node modules
@@ -38,3 +38,58 @@ cursos-online-app/*.sln
 # MacOS files
 cursos-online-app/Thumbs.db
 
+# Archivos de entorno de desarrollo
+WebAPI/.vscode/
+WebAPI/.idea/
+WebAPI/*.suo
+WebAPI/*.user
+WebAPI/*.userosscache
+WebAPI/*.sln.docstates
+
+# Archivos de compilación
+WebAPI/*.dll
+WebAPI/*.exe
+WebAPI/*.pdb
+WebAPI/*.cache
+WebAPI/*.ilk
+WebAPI/*.log
+WebAPI/*.wrn
+WebAPI/*.err
+WebAPI/*.log
+WebAPI/*.vspscc
+WebAPI/*.vssscc
+
+# Paquetes de NuGet
+WebAPI/*.nupkg
+# Directorio de paquetes de NuGet
+packages/
+# Directorio de las dependencias instaladas
+WebAPI/bin/
+WebAPI/obj/
+Persistencia/bin/
+Persistencia/obj/
+Seguridad/bin/
+Seguridad/obj/
+Dominio/bin/
+Dominio/obj/
+Aplicaion/bin/
+Aplicaion/obj/
+
+# Archivos de publicación
+WebAPI/*.Publish.xml
+WebAPI/*.pubxml
+WebAPI/*.pubxml.user
+
+# Archivos de despliegue de Azure
+WebAPI/.scmignore
+WebAPI/.env
+
+# Archivos de configuración locales
+WebAPI/*.local.settings.json
+WebAPI/.vscode/
+
+# Archivos de configuración de Rider
+WebAPI/.idea/
+
+# Logs
+WebAPI/*.log
