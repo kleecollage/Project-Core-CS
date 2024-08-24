@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
+using System.Reflection.Metadata;
 using System.Threading.Tasks;
 using Aplicacion.Contratos;
 using Aplicacion.ManejadorError;
@@ -21,6 +22,7 @@ namespace Aplicacion.Seguridad
             public string Email { get; set; }
             public string Password { get; set; }
             public string Username { get; set; }
+            public ImagenGeneral ImagenPerfil { get; set; }
         }
 
         public class EjecutaValidador: AbstractValidator<Ejecuta> {
@@ -58,13 +60,35 @@ namespace Aplicacion.Seguridad
                     throw new ManejadorExcepcion(HttpStatusCode.NotFound, new { mensaje = "El correo no existe" });
                 }
 
+                // Validacion de username unico
                 var resultado = await _context.Users
                     .Where(x => x.Email != request.Email && x.UserName == request.Username)
                     .AnyAsync();
-                
                 if (resultado)
                 {
                     throw new ManejadorExcepcion(HttpStatusCode.InternalServerError, new { mensaje = "Este username ya existe" });
+                }
+                // validacion de imagen perfil
+                if (request.ImagenPerfil != null)
+                {
+                    var resultadoImagen = await _context.Documento.Where(x => x.ObjetoReferencia == new Guid(usuarioIden.Id)).FirstAsync();
+                    if (resultadoImagen == null)
+                    {
+                        var imagen = new Documento
+                        {
+                            Contenido = Convert.FromBase64String(request.ImagenPerfil.Data),
+                            Nombre = request.ImagenPerfil.Nombre,
+                            Extension = request.ImagenPerfil.Extension,
+                            ObjetoReferencia = new Guid(usuarioIden.Id),
+                            Documentoid = Guid.NewGuid(),
+                            FechaCreacion = DateTime.UtcNow
+                        };
+                        _context.Documento.Add(imagen);
+                    } else {
+                        resultadoImagen.Contenido = Convert.FromBase64String(request.ImagenPerfil.Data);
+                        resultadoImagen.Nombre = request.ImagenPerfil.Nombre;
+                        resultadoImagen.Extension = request.ImagenPerfil.Extension;
+                    }
                 }
 
                 usuarioIden.NombreCompleto = request.NombreCompleto;
@@ -74,6 +98,18 @@ namespace Aplicacion.Seguridad
                 var resultadoUpdate = await _userManager.UpdateAsync(usuarioIden);
                 var resultadoRoles = await _userManager.GetRolesAsync(usuarioIden);
                 var listaRoles = new List<string>(resultadoRoles);
+                var imagenPerfil = await _context.Documento.Where(x => x.ObjetoReferencia == new Guid(usuarioIden.Id)).FirstAsync();
+                
+                ImagenGeneral imagenGeneral = null;
+                if ( imagenPerfil != null )
+                {
+                    imagenGeneral = new ImagenGeneral
+                    {
+                        Data = Convert.ToBase64String(imagenPerfil.Contenido),
+                        Nombre = imagenPerfil.Nombre,
+                        Extension = imagenPerfil.Extension
+                    };
+                }
                 
                 if (resultadoUpdate.Succeeded)
                 {
@@ -82,7 +118,8 @@ namespace Aplicacion.Seguridad
                         NombreCompleto = usuarioIden.NombreCompleto,
                         UserName = usuarioIden.UserName,
                         Email = usuarioIden.Email,
-                        Token = _jwtGenerador.CrearToken(usuarioIden, listaRoles)
+                        Token = _jwtGenerador.CrearToken(usuarioIden, listaRoles),
+                        ImagenPerfil = imagenGeneral
                     };
                 }
                 throw new Exception("No se pudo actualizar el usuario");
