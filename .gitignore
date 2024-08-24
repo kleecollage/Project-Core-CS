@@ -66,14 +66,18 @@ packages/
 # Directorio de las dependencias instaladas
 WebAPI/bin/
 WebAPI/obj/
+
 Persistencia/bin/
 Persistencia/obj/
+
 Seguridad/bin/
 Seguridad/obj/
+
 Dominio/bin/
 Dominio/obj/
-Aplicaion/bin/
-Aplicaion/obj/
+
+Aplicacion/bin/
+Aplicacion/obj/
 
 # Archivos de publicación
 WebAPI/*.Publish.xml
