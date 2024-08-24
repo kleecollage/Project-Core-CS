@@ -7,8 +7,8 @@ axios.interceptors.request.use((config) => {
     const token_seguridad = window.localStorage.getItem('token_seguridad')
     if (token_seguridad) {
         config.headers.Authorization = `Bearer ${token_seguridad}`;
-        return config
     }
+    return config
 }, error => {
     return Promise.reject(error);
 })

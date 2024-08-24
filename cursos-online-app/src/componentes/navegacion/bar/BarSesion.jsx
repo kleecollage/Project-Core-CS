@@ -1,6 +1,7 @@
 import { Avatar, Button, IconButton, makeStyles, Toolbar, Typography } from '@material-ui/core'
 import React from 'react'
 import FotoUsuarioTemp from '../../../logo.jpg'
+import { useStateValue } from '../../../contexto/store'
 
 const useStyles = makeStyles((theme) => ({
     seccionDesktop: {
@@ -26,6 +27,8 @@ const useStyles = makeStyles((theme) => ({
 
 const BarSesion = () => {
     const classes = useStyles();
+    const [{ sesionUsuario }, dispatch] = useStateValue()
+    
     return (
         <Toolbar>
             <IconButton color='inherit'>
@@ -41,10 +44,17 @@ const BarSesion = () => {
                     Salir
                 </Button>
                 <Button color='inherit'>
-                    {"Nombre de usuario"}
+                    {sesionUsuario ?  sesionUsuario.usuario.nombreCompleto : "Unauthenticathed"}
                 </Button>
                 <Avatar src={FotoUsuarioTemp} />
             </div>
+
+            <div className={classes.seccionMovil}>
+                <IconButton color='inherit'>
+                    <i className='material-icons'>more_vert</i>
+                </IconButton>
+            </div>
+            
         </Toolbar>
     );
 }

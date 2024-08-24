@@ -8,19 +8,34 @@ export const registrarUsuario = usuario => {
     })
 }
 
-export const obtenerUsuarioActual = () => {
+export const obtenerUsuarioActual = (dispatch) => {
     return new Promise((resolve, reject) => {
-        HttpCliente.get('/Usuario').then(response => {
-            resolve(response)
-        })
+        HttpCliente.get('/Usuario')
+            .then(response => {
+                if (typeof (dispatch) == 'function') {
+                    dispatch({
+                        type: "INICIAR_SESION",
+                        sesion: response.data,
+                        autenticado: true
+                    });
+                }
+                resolve(response)
+            })
+            .catch(error => {
+                reject(error.response)
+            });
     })
 }
 
 export const actualizarUsuario = (usuario) => {
     return new Promise((resolve, reject) => {
-    HttpCliente.put('/Usuario', usuario).then(response => {
-            resolve(response)
-        })
+        HttpCliente.put('/Usuario', usuario)
+            .then(response => {
+                resolve(response)
+            })
+            .catch(error => {
+                reject (error.response)
+            })
     })
 }
 

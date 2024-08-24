@@ -1,0 +1,1 @@
+export const initialState = () => { }; // se almacena data en tiempo de ejecucion

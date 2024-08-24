@@ -21,8 +21,8 @@ const Login = () => {
     
 
     /* test user
-    * moni.ramirez@gmail.com
-    * Jwtpass123$
+    * vaxi.drez@gmail.com
+    * Password123$
     */ 
     const loginUsuarioBoton = e => {
         e.preventDefault();
