@@ -33,15 +33,16 @@ const PerfilUsuario = () => {
         setUsuario(sesionUsuario.usuario);
         setUsuario(anterior => ({
             ...anterior,
-            fotoUrl: sesionUsuario.usuario.imagenPerfil,
-            imagenPerfil: null
-        }));
-    }, []);
+            password: '',
+            confirmarPassword: '',
+            fotoUrl: sesionUsuario.usuario.imagenPerfil
+        }))
+    }, [])
     
     const guardarUsuario = e => {
         e.preventDefault();
-        actualizarUsuario(usuario).then(response => {
-            // console.log("response", response)
+        actualizarUsuario(usuario, dispatch).then((response) => {
+            console.log("response", response)
             if (response.status === 200) {
                 dispatch({
                     type: "OPEN_SNACKBAR",
@@ -56,7 +57,7 @@ const PerfilUsuario = () => {
                     type: "OPEN_SNACKBAR",
                     openMensaje: {
                         open: true,
-                        mensaje: "Errores al guardar usuario en: " + Object.keys(response.data.errors)
+                        mensaje: "Errores al guardar usuario en: " + Object.keys(response)
                     }
                 })
             }
@@ -133,7 +134,7 @@ const PerfilUsuario = () => {
                                 variant='outlined'
                                 type='password'
                                 fullWidth
-                                label="Nueva contraseña"
+                                label="Ingrese contraseña"
                             />
                         </Grid>
 

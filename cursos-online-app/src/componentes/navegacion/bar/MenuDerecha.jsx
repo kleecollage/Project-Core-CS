@@ -11,7 +11,7 @@ export const MenuDerecha = ({
     <div className={classes.list}>
         <List>
             <ListItem button component={Link}>
-                <Avatar src={usuario.foto || FotoUsuarioTemp} />
+                <Avatar src={usuario.imagenPerfil || FotoUsuarioTemp} />
                 <ListItemText classes={{primary: classes.listItemText}} primary={ usuario ? usuario.nombreCompleto : ''} />
             </ListItem>
             <ListItem button onClick={salirSesion}>
