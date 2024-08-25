@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import ImageUploader from 'react-images-upload';
 import { v4 as uuidv4 } from 'uuid';
 import { Avatar, Button, Container, Grid, TextField, Typography } from '@material-ui/core';
-import { actualizarUsuario, obtenerUsuarioActual } from '../../actions/UsuarioAction';
+import { actualizarUsuario } from '../../actions/UsuarioAction';
 import { useStateValue } from "../../contexto/store";
 import style from '../Tool/Style';
 import defaultFoto from "../../logo.jpg";
@@ -33,14 +33,15 @@ const PerfilUsuario = () => {
         setUsuario(sesionUsuario.usuario);
         setUsuario(anterior => ({
             ...anterior,
-            fotoUrl: sesionUsuario.usuario.imagenPerfil
-        }))
-    }, [])
+            fotoUrl: sesionUsuario.usuario.imagenPerfil,
+            imagenPerfil: null
+        }));
+    }, []);
     
     const guardarUsuario = e => {
         e.preventDefault();
         actualizarUsuario(usuario).then(response => {
-            console.log("response", response)
+            // console.log("response", response)
             if (response.status === 200) {
                 dispatch({
                     type: "OPEN_SNACKBAR",

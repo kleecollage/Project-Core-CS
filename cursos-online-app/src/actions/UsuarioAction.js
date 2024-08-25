@@ -15,7 +15,7 @@ export const obtenerUsuarioActual = (dispatch) => {
                 // console.log('response: ', response)
                 if (data && data.imagenPerfil) {
                     let fotoPerfil = data.imagenPerfil;
-                    const nuevoFile = 'data.image/' + fotoPerfil.extension + ';base64,' + fotoPerfil.data;
+                    const nuevoFile = 'data:image/' + fotoPerfil.extension + ';base64,' + fotoPerfil.data;
                     data.imagenPerfil = nuevoFile
                 }
                 if (typeof (dispatch) == 'function') {
@@ -28,7 +28,8 @@ export const obtenerUsuarioActual = (dispatch) => {
                 resolve(data)
             })
             .catch(error => {
-                reject(error.data)
+                console.log("Error al actualizar", error)
+                reject(error)
             });
     })
 }
