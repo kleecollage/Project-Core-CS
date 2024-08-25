@@ -11,18 +11,24 @@ export const registrarUsuario = usuario => {
 export const obtenerUsuarioActual = (dispatch) => {
     return new Promise((resolve, reject) => {
         HttpCliente.get('/Usuario')
-            .then(response => {
+            .then(({data}) => {
+                // console.log('response: ', response)
+                if (data && data.imagenPerfil) {
+                    let fotoPerfil = data.imagenPerfil;
+                    const nuevoFile = 'data.image/' + fotoPerfil.extension + ';base64,' + fotoPerfil.data;
+                    data.imagenPerfil = nuevoFile
+                }
                 if (typeof (dispatch) == 'function') {
                     dispatch({
                         type: "INICIAR_SESION",
-                        sesion: response.data,
+                        sesion: data,
                         autenticado: true
                     });
                 }
-                resolve(response)
+                resolve(data)
             })
             .catch(error => {
-                reject(error.response)
+                reject(error.data)
             });
     })
 }

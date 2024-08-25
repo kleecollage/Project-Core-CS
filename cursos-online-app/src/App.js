@@ -12,20 +12,22 @@ import { useStateValue } from './contexto/store.js';
 import { obtenerUsuarioActual } from './actions/UsuarioAction.js';
 
  function App() {
-   const [{ sesionUsuario , openSnackbar}, dispatch] = useStateValue();
+   const [{ openSnackbar}, dispatch] = useStateValue();
    const [iniciaApp, setiniciaApp] = useState(false);
 
    useEffect(() => {
      if (!iniciaApp) {
-       obtenerUsuarioActual(dispatch).then(response => {
-         setiniciaApp(true)
-       }).catch(error => {
-         setiniciaApp(true)
-       })
+       obtenerUsuarioActual(dispatch)
+        .then(response => {
+          setiniciaApp(true)
+         })
+        .catch(error => {
+          setiniciaApp(true)
+         })
      }
    }, [iniciaApp]);
 
-   return (
+   return iniciaApp == false ? null : (
      <React.Fragment>  
        <Snackbar
          anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
