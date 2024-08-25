@@ -35,7 +35,8 @@ namespace Aplicacion.Documentos
                         Nombre = request.Nombre,
                         Extension = request.Extension,
                         Documentoid = Guid.NewGuid(),
-                        FechaCreacion = DateTime.UtcNow
+                        FechaCreacion = DateTime.UtcNow,
+                        ObjetoReferencia = request.ObjetoReferencia ?? Guid.Empty
                     };
                     _context.Documento.Add(doc);
                 } else {
