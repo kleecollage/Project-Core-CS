@@ -1,9 +1,4 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net;
-using System.Reflection.Metadata;
-using System.Threading.Tasks;
 using Aplicacion.Contratos;
 using Aplicacion.ManejadorError;
 using Dominio;
@@ -100,7 +95,7 @@ namespace Aplicacion.Seguridad
                 var listaRoles = new List<string>(resultadoRoles);
                 var imagenPerfil = await _context.Documento.Where(x => x.ObjetoReferencia == new Guid(usuarioIden.Id)).FirstAsync();
                 
-                ImagenGeneral imagenGeneral = null;
+                ImagenGeneral? imagenGeneral = null;
                 if ( imagenPerfil != null )
                 {
                     imagenGeneral = new ImagenGeneral
@@ -126,8 +121,5 @@ namespace Aplicacion.Seguridad
 
             }
         }
-
-
-
     }
 }

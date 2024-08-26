@@ -58,11 +58,11 @@ namespace Aplicacion.Seguridad
 
                 var resultado = await _signInManager.CheckPasswordSignInAsync(usuario, request.Password, false);
                 var resultadoRoles = await _userManager.GetRolesAsync(usuario);
-                var listaRoles = new List<string>(resultadoRoles);
+                var listaRoles = new List<string>(resultadoRoles);                
+                var imagenPerfil = await _context.Documento.Where(x => x.ObjetoReferencia == new Guid(usuario.Id)).FirstOrDefaultAsync();
                 
                 if (resultado.Succeeded)
                 {
-                    var imagenPerfil = await _context.Documento.Where(x => x.ObjetoReferencia == new Guid(usuario.Id)).FirstOrDefaultAsync();
                     if (imagenPerfil != null)
                     {
                         var imagenCliente = new ImagenGeneral
@@ -79,11 +79,13 @@ namespace Aplicacion.Seguridad
                             ImagenPerfil = imagenCliente
                         };
                     } else {
-                        return new UsuarioData { 
-                        NombreCompleto = usuario.NombreCompleto,
-                        Token = _jwtGenerador.CrearToken(usuario, listaRoles),
-                        UserName = usuario.UserName,
-                        Email = usuario.Email,
+                        return new UsuarioData
+                        {
+                            NombreCompleto = usuario.NombreCompleto,
+                            Token = _jwtGenerador.CrearToken(usuario, listaRoles),
+                            UserName = usuario.UserName,
+                            Email = usuario.Email,
+                            Imagen = null
                         };
                     }
                 }

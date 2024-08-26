@@ -14,10 +14,11 @@ namespace Aplicacion.Cursos
     {
         public class Ejecuta: IRequest {
             // [Required(ErrorMessage ="Porfavor Ingrese el Titulo")] // validacion por anotacion //
+            public Guid? CursoId { get; set; }
             public string Titulo { get; set; }
             public string Descripcion { get; set; }
             public DateTime? FechaPublicacion { get; set; }
-            public List<Guid> ListaInstructor { get; set; }
+            public List<Guid>? ListaInstructor { get; set; }
             public decimal Precio { get; set; }
             public decimal Promocion { get; set; }
         }
@@ -40,6 +41,10 @@ namespace Aplicacion.Cursos
             public async Task<Unit> Handle(Ejecuta request, CancellationToken cancellationToken)
             {
                 Guid _cursoId = Guid.NewGuid();
+                if (request.CursoId != null)
+                {
+                    _cursoId = request.CursoId ?? Guid.NewGuid();
+                }
 
                 var curso = new Curso
                 {
