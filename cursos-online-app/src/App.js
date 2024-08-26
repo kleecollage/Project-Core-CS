@@ -10,6 +10,8 @@ import PerfilUsuario from './componentes/seguridad/PerfilUsuario.jsx';
 import AppNavbar from './componentes/navegacion/AppNavbar.jsx';
 import { useStateValue } from './contexto/store.js';
 import { obtenerUsuarioActual } from './actions/UsuarioAction.js';
+import RutaSegura from './componentes/navegacion/RutaSegura.js';
+import NuevoCurso from './componentes/cursos/NuevoCurso.jsx';
 
  function App() {
    const [{ openSnackbar}, dispatch] = useStateValue();
@@ -27,7 +29,7 @@ import { obtenerUsuarioActual } from './actions/UsuarioAction.js';
      }
    }, [iniciaApp]);
 
-   return iniciaApp == false ? null : (
+   return iniciaApp === false ? null : (
      <React.Fragment>  
        <Snackbar
          anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
@@ -56,8 +58,21 @@ import { obtenerUsuarioActual } from './actions/UsuarioAction.js';
             <Switch>
               <Route exact path="/auth/login" component={ Login } />
               <Route exact path="/auth/registrar" component={ RegitrarUsuario } />
-              <Route exact path="/auth/perfil" component={ PerfilUsuario } />
-              <Route exact path="/" component={ PerfilUsuario } />
+               <RutaSegura
+                 exact
+                 path="/auth/perfil"
+                 component={PerfilUsuario}
+               />
+               <RutaSegura
+                 exact
+                 path="/"
+                 component={PerfilUsuario}
+               />
+               <RutaSegura
+                 exact
+                 path="/curso/nuevo"
+                 component={NuevoCurso}
+               />
             </Switch>
           </Grid>
         </MuiThemeProvider>

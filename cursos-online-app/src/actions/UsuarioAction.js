@@ -1,8 +1,14 @@
+import Axios from 'axios'
 import HttpCliente from '../servicios/HttpCliente'
+
+const instancia = Axios.create();
+instancia.CancelToken = Axios.CancelToken;
+instancia.isCancel = Axios.isCancel;
+
 
 export const registrarUsuario = usuario => {
     return new Promise((resolve, reject) => {
-        HttpCliente.post('/Usuario/registrar', usuario).then(response => {
+        instancia.post('/Usuario/registrar', usuario).then(response => {
             resolve(response)
         })
     })
@@ -58,10 +64,24 @@ export const actualizarUsuario = (usuario, dispatch) => {
     })
 }
 
-export const loginUsuario = usuario => {
+export const loginUsuario = (usuario, dispatch) => {
     return new Promise((resolve, reject) => {
-        HttpCliente.post('/Usuario/login', usuario).then(response => {
+        instancia.post('/Usuario/login', usuario).then(response => {
+
+            if (response.data && response.data.imagenPerfil) {
+                let fotoPerfil = response.data.imagenPerfil;
+                const nuevoFile = "data:image/" + fotoPerfil.extension + ";base64," + fotoPerfil.data;
+                response.data.imagenPerfil = nuevoFile
+            }
+
+            dispatch({
+                type: "INICIAR_SESION",
+                sesion: response.data,
+                autenticado: true
+            })
             resolve(response)
+        }).catch(error => {
+            resolve(error.response)
         })
     })
 }

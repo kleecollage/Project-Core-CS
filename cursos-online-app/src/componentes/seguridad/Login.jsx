@@ -1,11 +1,14 @@
 import React, { useState } from 'react';
+import { withRouter } from "react-router-dom";
 import style from '../Tool/Style';
 import { Avatar, Button, Container, TextField, Typography } from '@material-ui/core';
 import LockTwoToneIcon from '@material-ui/icons/LockTwoTone';
 import { loginUsuario } from '../../actions/UsuarioAction';
+import { useStateValue } from '../../contexto/store';
 
-const Login = () => {
+const Login = (props) => {
 
+    const [{ usarioSesion }, dispatch] = useStateValue();
     const [usuario, setUsuario] = useState({
         Email: '',
         Password: ''
@@ -24,14 +27,23 @@ const Login = () => {
     * vaxi.drez@gmail.com
     * Password123$
     */ 
-    const loginUsuarioBoton = e => {
+    const loginUsuarioBoton = (e) => {
         e.preventDefault();
-        loginUsuario(usuario).then( ({data}) => {
-            console.log('login exitoso:', data);
-            window.localStorage.setItem("token_seguridad", data.token)
+        loginUsuario(usuario, dispatch).then(response => {
+            if (response.status === 200) {
+                window.localStorage.setItem("token_seguridad", response.data.token);
+                props.history.push("/");
+            } else {
+                dispatch({
+                    type: "OPEN_SNACKBAR",
+                    openMensaje: {
+                        open: true,
+                        mensaje: "Las credenciales del usuario son incorrectas"
+                    }
+                })
+            }
         });
-    }
-
+    };
 
     return (
         <Container maxWidth="xs">
@@ -81,4 +93,4 @@ const Login = () => {
     );
 };
 
-export default Login;
+export default withRouter(Login);

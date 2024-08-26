@@ -1,10 +1,10 @@
-import { Avatar, Button, Drawer, IconButton, List, ListItem, ListItemText, makeStyles, Toolbar, Typography } from '@material-ui/core'
 import React, { useState } from 'react'
+import { withRouter } from 'react-router-dom'
+import { Avatar, Button, Drawer, IconButton, makeStyles, Toolbar, Typography } from '@material-ui/core'
 import FotoUsuarioTemp from '../../../logo.jpg'
 import { useStateValue } from '../../../contexto/store'
 import { MenuIzquierda } from './MenuIzquierda'
 import { MenuDerecha } from './MenuDerecha'
-import { withRouter } from 'react-router-dom'
 
 const useStyles = makeStyles((theme) => ({
     seccionDesktop: {
@@ -58,6 +58,11 @@ const BarSesion = (props) => {
     }
     const salirSesionApp = () => {
         localStorage.removeItem('token_seguridad');
+        dispatch({
+            type: "SALIR_SESION",
+            nuevoUsuario: null,
+            autenticado: false,
+        })
         props.history.push('/auth/login')
     }
     

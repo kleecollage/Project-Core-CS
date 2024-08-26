@@ -35,8 +35,9 @@ const PerfilUsuario = () => {
             ...anterior,
             password: '',
             confirmarPassword: '',
-            fotoUrl: sesionUsuario.usuario.imagenPerfil
-        }))
+            fotoUrl: sesionUsuario.usuario.imagenPerfil,
+            imagenPerfil: null
+        }));
     }, [])
     
     const guardarUsuario = e => {
