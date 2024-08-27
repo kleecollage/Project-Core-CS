@@ -1,6 +1,5 @@
 # .NET Project #
 ## System Requirements ##
----
 Before downloading and running this project, make sure your system meets the following requirements:
 
 ### .NET 6.0 SDK ###
@@ -13,7 +12,6 @@ The project requires an MSSQL Server database for its operation. Make sure you h
 You must have npm installed, and the recommended version of Node.js is v12.22.12.
 
 ## Execution Instructions
----
 Once you've downloaded the project, follow these steps to get it up and running:
 * Lift the Backend and Migrate the Database
 * From the root of the project, run the following command to stand up the backend and perform the database migration:
