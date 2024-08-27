@@ -91,7 +91,9 @@ BEGIN
         c.Descripcion,
         c.FechaPublicacion,
         c.FotoPortada,
-        c.FechaCreacion
+        c.FechaCreacion,
+        p.PrecioActual,
+        p.Promocion
     FROM #TMP t INNER JOIN dbo.Curso c 
                     ON t.ID = c.CursoId
                 LEFT JOIN Precio p

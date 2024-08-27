@@ -1,8 +1,4 @@
-using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Threading.Tasks;
 using Dapper;
 
 namespace Persistencia.DapperConexion.Paginacion
@@ -17,12 +13,11 @@ namespace Persistencia.DapperConexion.Paginacion
             string storeProcedure,
             int numeroPagina,
             int cantidadElementos,
-            IDictionary<string, object>
-            parametrosFiltro,
+            IDictionary<string, object> parametrosFiltro,
             string ordenamientoColumna
         ) {
             PaginacionModel paginacionModel = new PaginacionModel();
-            List<IDictionary<string, object>> listaReporte = null;
+            List<IDictionary<string, object>> listaReporte = new();
             int totalRecords = 0;
             int totalPaginas = 0;
             try
@@ -46,8 +41,8 @@ namespace Persistencia.DapperConexion.Paginacion
                 var result = await connection.QueryAsync(storeProcedure, parametros, commandType: CommandType.StoredProcedure);
                 listaReporte = result.Select(x => (IDictionary<string, object>)x).ToList();
                 paginacionModel.ListaRecords = listaReporte;
-                paginacionModel.TotalRecords = parametros.Get<int>("@TotalRecords");
                 paginacionModel.NumeroPaginas = parametros.Get<int>("@TotalPaginas");
+                paginacionModel.TotalRecords = parametros.Get<int>("@TotalRecords");
             }
             catch (Exception e)
             {

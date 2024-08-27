@@ -1,12 +1,6 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Dominio;
 using MediatR;
 using Aplicacion.Cursos;
-using Microsoft.AspNetCore.Authorization;
 using Persistencia.DapperConexion.Paginacion;
 
 namespace WebAPI.Controllers

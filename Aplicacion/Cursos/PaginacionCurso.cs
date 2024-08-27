@@ -25,11 +25,9 @@ namespace Aplicacion.Cursos
             {
                 var storedProcedure = "usp_obtener_paginacion";
                 var ordenamiento = "Titulo"; // este dato viene directamente de la tabla Curso
-                var parametros = new Dictionary<string, object>
-                {
-                    { "NombreCurso", request.Titulo } // parametro de filtro
-                };
-                
+                var parametros = new Dictionary<string, object>();
+                parametros.Add("NombreCurso", request.Titulo); // parametro de filtro
+
                 return await _paginacion.DevolverPaginacion(
                     storedProcedure,
                     request.NumeroPagina,
@@ -39,12 +37,5 @@ namespace Aplicacion.Cursos
                 );
             }
         }
-
-
-
-
-
-
-
     }
 }

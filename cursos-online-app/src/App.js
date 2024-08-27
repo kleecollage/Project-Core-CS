@@ -12,6 +12,7 @@ import { useStateValue } from './contexto/store.js';
 import { obtenerUsuarioActual } from './actions/UsuarioAction.js';
 import RutaSegura from './componentes/navegacion/RutaSegura.js';
 import NuevoCurso from './componentes/cursos/NuevoCurso.jsx';
+import PaginadorCurso from './componentes/cursos/PaginadorCurso.jsx';
 
  function App() {
    const [{ openSnackbar}, dispatch] = useStateValue();
@@ -73,6 +74,12 @@ import NuevoCurso from './componentes/cursos/NuevoCurso.jsx';
                  path="/curso/nuevo"
                  component={NuevoCurso}
                />
+               <RutaSegura
+                 exact
+                 path="/curso/paginador"
+                 component={PaginadorCurso}
+               />
+
             </Switch>
           </Grid>
         </MuiThemeProvider>

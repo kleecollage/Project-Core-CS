@@ -11,7 +11,13 @@ export const guardarCurso = async (curso, imagen) => {
     }else {
         return await Promise.all([promesaCurso]);
     }
-        
+}
 
+export const paginacionCurso = async (paginador) => {
+    return await new Promise((resolve, reject) => {
+        HttpCliente.post('cursos/report', paginador).then(response => {
+            resolve(response)
+        })
+    });
 
 }
